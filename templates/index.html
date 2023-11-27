@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation App</title>
+</head>
+<body>
+    <h1>Translation App</h1>
+    <form action="/translate" method="post">
+        <label for="text">Enter text to translate:</label>
+        <input type="text" id="text" name="text" required>
+        <button type="submit">Translate</button>
+    </form>
+        <p>Input Text: {{ input_text }}</p>
+        <p>Translated Text: {{ translated_text }}</p>
+</body>
+</html>
