@@ -1,0 +1,14 @@
+
+.navbar{
+    padding:0em 10em 0em 10em; 
+    /* keeps components from the edges of the nav */
+    height:3em;
+    border-bottom-right-radius:30%;
+    border-bottom-left-radius:30%;
+    /* border-bottom-radius: 50% 50%; */
+    box-shadow: 0px 4px 10px 0px #424643;
+}
+
+.formspacing{
+    padding-bottom: 5em;
+}

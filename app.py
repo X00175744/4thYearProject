@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import json
 import boto3
 
+# app = Flask(__name__, static_url_path='/static')
 app = Flask(__name__)
 
 awsAccessKey = 'AKIARHS7T7WLGENB5V4B' #this can be done with Cognito later, to hide my secrets
@@ -20,21 +21,48 @@ lambdaClient = boto3.client('lambda',
 def index():
     return render_template('index.html')
 
+# @app.route("/getSourceLanguage", methods=['POST','GET'])
+#additional functions, like adding languages, can be achieved by adding them
+#to the /translate method. All the relevant info, from input text to language choice
+#will be posted when the translate button is pushed
+
+
+
+
 @app.route('/translate', methods=['POST', 'GET'])
 #when the translate button is pressed, call the lambda function
+  
 def translate():
     input_text = request.form['text']
+
+    # srcLanguage = request.form['sourceLanguages']
+    sourceLanguage = request.form.get('sourceLanguages')
+    print(sourceLanguage)
+
+    destLanguage = request.form.get('destLanguages')
+
+    print("destLanguage " + str(destLanguage))
     print("input found")
     print(input_text)
 
     try:#exception handling
             print("hi2")
+            
+
+            payload = {
+                  "text":input_text,
+                  "sourceLanguageCode":sourceLanguage,
+                  "destLanguageCode":destLanguage
+            }
+
             response = lambdaClient.invoke(
                 FunctionName=lambdaFunctionName, #the lambda function to be called
                 InvocationType='RequestResponse',
-                Payload=f'{{"text": "{input_text}"}}'.encode('utf-8')
-                #the payload is the json response.
+                Payload=json.dumps(payload).encode('utf-8')
+                            #the payload is the json response.
                 #f is an f-string, which lets us format it like json
+                #f string replaced with json.dumps to format the payload into json
+                #this lets us configure the payload with languages as well as text
             )
             print("input found2")
 

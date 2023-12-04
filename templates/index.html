@@ -1,19 +1,111 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Translation App</title>
+    <!-- bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- css link (flask uses static for css. css must be linked AFTER Bootstrap)-->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    <title>MediComms</title>
 </head>
-<body>
-    <h1>Translation App</h1>
+<body class = "bg-light">
+    <nav class = "navbar bg-dark mb-4">
+        <!-- <a class = "btn btn-danger" href="home.html">Home</a> -->
+    </nav>   
+
     <form action="/translate" method="post">
-        <label for="text">Enter text to translate:</label>
-        <input type="text" id="text" name="text" required>
-        <button type="submit">Translate</button>
+        
+        <div class = "container">
+            <div id = "dropdownRow" class = "row m-2 p-2">
+                <div class = "col p-2 text-center">
+                    <!-- each language value is the AWS code -->
+                    <!-- <label for="sourceLanguages">Starting language:</label> -->
+                    <select class = "btn btn-warning btn-lg" id="sourceLanguages" name="sourceLanguages">
+
+                        <option value="en">English</option>
+                    <!-- english as default starting language -->
+                        <option value="sq">Albanian</option>
+                        <option value="ar">Arabic</option>
+                        <option value="fr">French</option>
+                        <option value="ka">Georgian</option>
+                        <option value="de">German</option>
+                        <option value="ga">Irish</option>
+                        <option value="it">Italian</option>
+                        <option value="lv">Latvian</option>
+                        <option value="lt">Lithuanian</option>
+                        <option value="pl">Polish</option>
+                        <option value="ro">Romanian</option>
+                        <option value="ru">Russian</option>
+                        <option value="sr">Serbian</option>
+                        <option value="es">Spanish</option>
+                        <option value="tr">Turkish</option>
+                        <option value="uk">Ukrainian</option>
+                    </select>
+                </div>
+
+                <div class = "col p-2 text-center">
+                    <!-- <label for="destLanguages">Destination language:</label> -->
+                    <select class = "btn btn-warning btn-lg" id="destLanguages" name="destLanguages">
+
+                        <option value="en" disabled selected>Choose Your Language</option>
+                        <option value="en">English</option>
+                        <!-- english as default starting language -->
+                        <option value="sq">Albanian</option>
+                        <option value="ar">Arabic</option>
+                        <option value="fr">French</option>
+                        <option value="ka">Georgian</option>
+                        <option value="de">German</option>
+                        <option value="ga">Irish</option>
+                        <option value="it">Italian</option>
+                        <option value="lv">Latvian</option>
+                        <option value="lt">Lithuanian</option>
+                        <option value="pl">Polish</option>
+                        <option value="ro">Romanian</option>
+                        <option value="ru">Russian</option>
+                        <option value="sr">Serbian</option>
+                        <option value="es">Spanish</option>
+                        <option value="tr">Turkish</option>
+                        <option value="uk">Ukrainian</option>
+                    </select>
+                </div>
+
+            <div id = "boxrow" class = "row">
+                <div class="col">
+                    
+                    <!-- <label for="text">Enter text to translate:</label> -->
+                    <input class = "formspacing form-control form-control-lg" placeholder="Enter text to translate: " type="text" id="text" name="text" required>
+                    <div class = "text-center mt-4">
+                        <span class = "fst-italic">Input text: </span>
+                        <span class = "m-4 text-center">{{ input_text }}</span>
+                    </div>
+                </div>
+
+        
+                <!-- <div class = "col-1">
+
+                </div> -->
+                <div class = "col">
+                    <input class = "formspacing form-control form-control-lg" type ="text" value="{{ translated_text }}" aria-label="readonly" placeholder="Translation" readonly>
+                    <div class = "text-center mt-4">
+                        <span class = "fst-italic">Translation: </span>
+                        <span class = "m-4 text-center">{{ translated_text }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col"></div>
+                <div class = "col text-center">
+                    <button class = "mt-3 btn btn-outline-success w-100" type="submit">Translate</button>
+                </div>
+                <div class = "col"></div>
+            </div>
+        </div>
     </form>
-        <p>Input Text: {{ input_text }}</p>
-        <p>Translated Text: {{ translated_text }}</p>
+
 </body>
+
+
 </html>
