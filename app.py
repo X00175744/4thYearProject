@@ -5,17 +5,57 @@ import boto3
 # app = Flask(__name__, static_url_path='/static')
 app = Flask(__name__)
 
-awsAccessKey = 'AKIARHS7T7WLGENB5V4B' #this can be done with Cognito later, to hide my secrets
-awsSecretAccessKey = '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'
+def get_secret():
+
+    secret_name = "SecretKeys"
+    region_name = "eu-west-1"
+
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
+    
+    get_secret_value_response = client.get_secret_value(
+        SecretId=secret_name
+    )
+    secret_dict = json.loads(get_secret_value_response['SecretString'])
+    return secret_dict
+
+    # Decrypts secret using the associated KMS key.
+    # secret = get_secret_value_response['SecretString']
+
+
+secret_credentials = get_secret()
+# awsAccessKey = 'AKIARHS7T7WLGENB5V4B' #this can be done with secrets manager later, to hide my secrets
+# awsSecretAccessKey = '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'
 awsRegion = 'eu-west-1'
 lambdaFunctionName = 'TranslateFun'
 
-lambdaClient = boto3.client('lambda',
-                            aws_access_key_id = awsAccessKey,
-                            aws_secret_access_key = awsSecretAccessKey,
-                            region_name=awsRegion)
+# lambdaClient = boto3.client('lambda',
+#                             aws_access_key_id = awsAccessKey,
+#                             aws_secret_access_key = awsSecretAccessKey,
+#                             region_name=awsRegion)
 
-# lambdaClient = boto3.client('lambda', region_name='your_region')
+lambdaClient = boto3.client('lambda', 
+                            aws_access_key_id=secret_credentials.get('access_key'),
+                            aws_secret_access_key=secret_credentials.get('secret_access_key'),
+                            region_name='eu-west-1')
+
+
+# Loginclient = boto3.client('cognito-idp', region_name='eu-west-1')
+
+# # Example: Sign up a new user
+# response = Loginclient.sign_up(
+#     ClientId='5q8ghnbpfv860cnd579eqtkf23',
+#     Username='username',
+#     Password='password',
+#     UserAttributes=[
+#         {'Name': 'email', 'Value': 'user@example.com'},
+#     ]
+# )
 
 @app.route('/')
 def index():
