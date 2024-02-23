@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, request, redirect, url_for
+from user_auth import SimpleLoginSystem
 import json
 import boto3
 
 # app = Flask(__name__, static_url_path='/static')
 app = Flask(__name__)
+login_system = SimpleLoginSystem()
 
 def get_secret():
 
@@ -73,7 +75,9 @@ def index():
 #when the translate button is pressed, call the lambda function
   
 def translate():
+    
     input_text = request.form['text']
+    #grabs the text from the input box form
 
     # srcLanguage = request.form['sourceLanguages']
     sourceLanguage = request.form.get('sourceLanguages')
@@ -121,6 +125,20 @@ def translate():
     except Exception as e:
             # Handle exceptions
             return render_template('index.html', input_text=input_text, error_message=str(e))
+    
+    
+    
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form['username']
+    password = request.form['password']
+
+    if login_system.login(username, password):
+        # Redirect to a new page or perform additional actions on successful login
+        return redirect(url_for('dashboard'))
+    else:
+        return render_template('index.html', error="Login failed.")
+
 
    
 if __name__ == '__main__':

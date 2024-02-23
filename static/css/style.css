@@ -2,7 +2,7 @@
 .navbar{
     padding:0em 10em 0em 10em; 
     /* keeps components from the edges of the nav */
-    height:3em;
+    height:3.5em;
     border-bottom-right-radius:30%;
     border-bottom-left-radius:30%;
     /* border-bottom-radius: 50% 50%; */
@@ -12,3 +12,35 @@
 .formspacing{
     padding-bottom: 5em;
 }
+.nav-item{
+    margin: 0.5rem;
+    opacity: 50%;
+    font-weight:bold;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.nav-item:hover{
+    opacity:100%; /*looks like its lighting up*/
+    transition: 0.2s;
+    background-color:gray;
+}
+
+.nav-link{
+    color: gray;
+    font-weight:bold;
+    font-style: italic;
+    font-size: 20px;
+}
+
+.nav-link:visited{
+    color: gray;
+    /* to stop the link from becoming black when clicked */
+}
+
+.nav-link:hover{
+    color:#ffffff;
+    transition:0.2s;
+}
+
+

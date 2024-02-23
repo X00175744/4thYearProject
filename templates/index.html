@@ -9,16 +9,157 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- css link (flask uses static for css. css must be linked AFTER Bootstrap)-->
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>MediComms</title>
 </head>
+
 <body class = "bg-light">
-    <nav class = "navbar bg-dark mb-4">
-        <!-- <a class = "btn btn-danger" href="home.html">Home</a> -->
-    </nav>   
+    <!-- <nav class = "navbar bg-dark mb-4">
+        <a class = "btn btn-danger" href="home.html">Home</a> 
+    </nav>    -->
 
     <form action="/translate" method="post">
+
+        <nav class="navbar navbar-expand-lg bg-dark mb-4">
+            <!-- <a class="navbar-brand" href="#">Menu</a> -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                  <!-- Dropdown menu -->
+                  <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      General
+                    </a>
+                    <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                        <button class="btn nav-item" type="submit" name="text" value="What brings you here today?">
+                            What is your name?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="What is your name?">
+                            What brings you here today?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="Which department are you looking for?">
+                            Do you have a Next of Kin or family member?
+                        </button>
+                      <!-- </form> -->
+                    </div>
+                  </li>
+                </ul>
+              </div>
         
-        <div class = "container">
+            <div class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <!-- Dropdown menu -->
+                <li class="dropdown">
+                  <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Head
+                  </a>
+                  <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                      <button class="btn nav-item" type="submit" name="text" value="Do you feel dizzy?">
+                            Do you feel dizzy?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="Did you hit your head?">
+                            Did you hit your head?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="Do you feel like you might fall?">
+                            Do you feel like you might fall?
+                        </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" >
+                <ul class="navbar-nav">
+                  <!-- Dropdown menu -->
+                  <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Chest
+                    </a>
+                    <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                        <button class="btn nav-item" type="submit" name="text" value="What brings you here today?">
+                            Do you have pain in your chest?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="What is your name?">
+                            Do you feel tightness in your chest?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="Which department are you looking for?">
+                            Is the pain dull or sharp?
+                        </button>
+                     </div>
+                  </li>
+                </ul>
+              </div>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <!-- Dropdown menu -->
+                  <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Arms
+                    </a>
+                    <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                        <button class="btn nav-item" type="submit" name="text" value="What brings you here today?">
+                            Do you feel weakness in your arms?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="What is your name?">
+                            Do you feel pain in your arms?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="Which department are you looking for?">
+                            Can you describe the pain. Is it shooting up or down your arm?
+                        </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse" >
+                <ul class="navbar-nav">
+                  <!-- Dropdown menu -->
+                  <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Legs
+                    </a>
+                    <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                        <button class="btn nav-item" type="submit" name="text" value="What brings you here today?">
+                            Are you able to stand?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="What is your name?">
+                            Do your legs feel weak or shaky?
+                        </button>
+                        <button class="btn nav-item" type="submit" name="text" value="Which department are you looking for?">
+                            Do you need help walking?
+                        </button>
+                     </div>
+                  </li>
+                </ul>
+              </div>
+          </nav>
+        <div class="row">
+        
+        <!-- <div class = "col-2 container">
+            <button class="btn nav-item" type="submit" name="text" value="What brings you here today?">"What brings you here today?"</button>
+            <button class="btn nav-item" type="submit" name="text" value="What is your name?">"What is your name?"</button>
+            <button class="btn nav-item" type="submit" name="text" value="Which department are you looking for?">"Which department are you looking for?"</button>
+
+        </div> -->
+        
+        <div class = "col container">
             <div id = "dropdownRow" class = "row m-2 p-2">
                 <div class = "col p-2 text-center">
                     <!-- each language value is the AWS code -->
@@ -49,8 +190,8 @@
                 <div class = "col p-2 text-center">
                     <!-- <label for="destLanguages">Destination language:</label> -->
                     <select class = "btn btn-warning btn-lg" id="destLanguages" name="destLanguages">
-
-                        <option value="en" disabled selected>Choose Your Language</option>
+                        <!-- <label for="text">Choose Your Language</label> -->
+                        <!-- <option value="en" disabled selected>Choose Your Language</option> -->
                         <option value="en">English</option>
                         <!-- english as default starting language -->
                         <option value="sq">Albanian</option>
@@ -72,11 +213,34 @@
                     </select>
                 </div>
 
+                <!-- <select id = "presets" name = "presets"> -->
+                    <!-- <option value="en" disabled selected>Commonly Used Phrases</option> -->
+
+                    <!-- <option> -->
+                        
+                    <!-- </option> -->
+                <!-- </select> -->
+                
+                <!-- <select class = "btn btn-warning btn-lg" id="text2" name="text2">
+
+                    <option disabled selected>Commonly Used Phrases</option>
+                    <option value="Welcome to the Emergency Department">Welcome to the Emergency Department</option>
+                  
+                </select> -->
+                
+
+                
+
+
+                
+            
             <div id = "boxrow" class = "row">
                 <div class="col">
                     
                     <!-- <label for="text">Enter text to translate:</label> -->
-                    <input class = "formspacing form-control form-control-lg" placeholder="{{ input_text }} " type="text" id="text" name="text" required>
+                    <input class = "formspacing form-control form-control-lg" placeholder="{{ input_text }} " type="text" id="text" name="text">
+                    <!-- Using required will stop the preset text from working. This is because the preset text is a submit button, but the required
+                    keyword will not allow submission until the text box is filled, which, technically, it is not.. -->
                     <div class = "text-center mt-4">
                         <span class = "fst-italic">Input text: </span>
                         <span class = "m-4 text-center">{{ input_text }}</span>
@@ -100,10 +264,24 @@
                 <div class = "col text-center">
                     <button class = "mt-3 btn btn-outline-success w-100" type="submit">Translate</button>
                 </div>
-                <div class = "col"></div>
+               
+                
+                <div class = "col text-center">
+                    <h1>
+                        <i class="bi bi-megaphone-fill "></i>
+                    </h1>
+                </div>
             </div>
         </div>
     </form>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 
 </body>
 
